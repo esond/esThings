@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadDeviceToCloudMessages",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulatedDevice", "SimulatedDevice\SimulatedDevice.csproj", "{E5D9A737-0D9F-477F-9808-8B5BF77BEE37}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tutorials", "Tutorials", "{D9AA3AED-CDD8-44C8-A1FC-65EDD4C179A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D9AA3AED-CDD8-44C8-A1FC-65EDD4C179A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
