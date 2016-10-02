@@ -120,7 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GarbageCanMessage.cs" />
+    <Compile Include="GarbageCanStatus.cs" />
     <Compile Include="GarbageCanMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

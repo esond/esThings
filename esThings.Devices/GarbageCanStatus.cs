@@ -2,7 +2,7 @@
 
 namespace esThings.Devices
 {
-    public class GarbageCanMessage
+    public class GarbageCanStatus
     {
         public Guid MessageId { get; set; }
 

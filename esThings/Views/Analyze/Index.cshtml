@@ -1,7 +1,42 @@
-﻿
+﻿@using esThings.Devices
+
+@model IEnumerable<GarbageCanStatus>
+
 @{
     ViewBag.Title = "Analyze";
 }
 
 <h2>Analyze</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>MessageId</th>
+        <th>DeviceId</th>
+        <th>DeviceKey</th>
+        <th>Fullness</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    @foreach (GarbageCanStatus status in Model)
+    {
+        <tr>
+            <td>@status.MessageId</td>
+            <td>@status.DeviceId</td>
+            <td>@status.DeviceKey</td>
+            <td>@status.Fullness</td>
+
+            @if (status.Fullness == 100) //TODO: Use configured number
+            {
+                <td>
+                    <span class="alert-danger">Full!</span>
+                </td>
+            }
+            else
+            {
+                <td>Ok</td>
+            }
+        </tr>
+    }
+</table>
 
