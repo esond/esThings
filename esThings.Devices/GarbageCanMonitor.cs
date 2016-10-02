@@ -8,7 +8,7 @@ namespace esThings.Devices
 {
     public class GarbageCanMonitor
     {
-        private DeviceClient _deviceClient;
+        private readonly DeviceClient _deviceClient;
 
         private bool _isRunning;
 

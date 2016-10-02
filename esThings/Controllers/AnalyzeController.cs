@@ -46,7 +46,6 @@ namespace esThings.Controllers
 
             using (MemoryStream ms = new MemoryStream())
             {
-                // TODO: Async
                 await blockBlob.DownloadToStreamAsync(ms);
                 contents = Encoding.UTF8.GetString(ms.ToArray());
             }

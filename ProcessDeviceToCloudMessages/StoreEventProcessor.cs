@@ -31,10 +31,9 @@ namespace ProcessDeviceToCloudMessages
         {
             var storageAccount = CloudStorageAccount.Parse(StorageConnectionString);
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            _blobContainer = blobClient.GetContainerReference("esthings");
+            _blobContainer = blobClient.GetContainerReference("d2ctutorial");
             _blobContainer.CreateIfNotExists();
             _queueClient = QueueClient.CreateFromConnectionString(ServiceBusConnectionString);
-            _queueClient.
         }
 
         Task IEventProcessor.CloseAsync(PartitionContext context, CloseReason reason)
