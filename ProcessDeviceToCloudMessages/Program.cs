@@ -11,14 +11,13 @@ namespace ProcessDeviceToCloudMessages
     {
         public static void Main(string[] args)
         {
-            string iotHubConnectionString =
-                "HostName=esThings.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=fOqVTq6qlMj5ox7w9AJTItDxNzxKTqL8QSjE78xdAlg=";
-            string iotHubD2CEndpoint = "messages/events";
+            const string iotHubConnectionString = "HostName=esThings.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=fOqVTq6qlMj5ox7w9AJTItDxNzxKTqL8QSjE78xdAlg=";
+            const string iotHubD2CEndpoint = "messages/events";
             
             StoreEventProcessor.StorageConnectionString =
                 "DefaultEndpointsProtocol=http;AccountName=esthings;AccountKey=EQmh5WvKutnJRcCo/UPEPuhSRjfPTZywqg8XYOF/fQphl8Ngf+T64++LZCCNyQr59srpUzf2Swx0nUbkbkjb1Q==";
             StoreEventProcessor.ServiceBusConnectionString =
-                "Endpoint=sb://esthings.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=2g5JD0rY3MptF34GLOoOpfCPE4u0VicgonKDzY8eLlM=";
+                "Endpoint=sb://esthings.servicebus.windows.net/;SharedAccessKeyName=esThingsSend;SharedAccessKey=TM/CQ6LQEdYZ657z6tTUbLCqZUad3ofEOy7wRehLYRU=;EntityPath=esthingsqueue";
 
             string eventProcessorHostName = Guid.NewGuid().ToString();
 

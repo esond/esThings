@@ -18,9 +18,8 @@ namespace ProcessDeviceToCloudMessages
         public static string StorageConnectionString;
         public static string ServiceBusConnectionString;
 
-        private readonly CloudBlobClient blobClient;
         private readonly CloudBlobContainer _blobContainer;
-        private readonly QueueClient queueClient;
+        private readonly QueueClient _queueClient;
 
         private long _currentBlockInitOffset;
         private MemoryStream _toAppend = new MemoryStream(MaxBlockSize);
@@ -31,10 +30,10 @@ namespace ProcessDeviceToCloudMessages
         public StoreEventProcessor()
         {
             var storageAccount = CloudStorageAccount.Parse(StorageConnectionString);
-            blobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             _blobContainer = blobClient.GetContainerReference("d2ctutorial");
             _blobContainer.CreateIfNotExists();
-            queueClient = QueueClient.CreateFromConnectionString(ServiceBusConnectionString);
+            _queueClient = QueueClient.CreateFromConnectionString(ServiceBusConnectionString);
         }
 
         Task IEventProcessor.CloseAsync(PartitionContext context, CloseReason reason)
@@ -70,7 +69,7 @@ namespace ProcessDeviceToCloudMessages
                     var queueMessage = new BrokeredMessage(new MemoryStream(data));
                     queueMessage.MessageId = messageId;
                     queueMessage.Properties["messageType"] = "interactive";
-                    await queueClient.SendAsync(queueMessage);
+                    await _queueClient.SendAsync(queueMessage);
 
                     WriteHighlightedMessage($"Received interactive message: {messageId}");
                     continue;

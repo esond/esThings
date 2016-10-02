@@ -12,7 +12,7 @@ namespace ProcessDeviceToCloudInteractiveMessages
             Console.WriteLine("Process D2C Interactive Messages\n");
 
             const string connectionString =
-                "Endpoint=sb://esthings.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=2g5JD0rY3MptF34GLOoOpfCPE4u0VicgonKDzY8eLlM=";
+                "Endpoint=sb://esthings.servicebus.windows.net/;SharedAccessKeyName=esThingsListen;SharedAccessKey=vDbU8cS3Fq6SRkMRwkXMG7ABqry+TsP4Sk4a9MaVbk4=;EntityPath=esthingsqueue";
             QueueClient client = QueueClient.CreateFromConnectionString(connectionString);
 
             OnMessageOptions options = new OnMessageOptions();
