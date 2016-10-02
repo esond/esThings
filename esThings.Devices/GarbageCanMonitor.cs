@@ -5,13 +5,18 @@ namespace esThings.Devices
 {
     public class GarbageCanMonitor
     {
-        public GarbageCanMonitor(int id, string deviceKey)
+        private bool _isRunning;
+
+        public GarbageCanMonitor(string hubUri, string id, string deviceKey)
         {
+            HubUri = hubUri;
             Id = id;
             DeviceKey = deviceKey;
         }
 
-        public int Id { get; set; }
+        public string HubUri { get; set; }
+
+        public string Id { get; set; }
 
         public string DeviceKey { get; set; }
 
@@ -19,14 +24,21 @@ namespace esThings.Devices
 
         public int MessageIntervalSeconds { get; set; }
 
-        public void Run()
+        public async void Start()
         {
-            throw new NotImplementedException();
+            _isRunning = true;
+
+            while (_isRunning)
+            {
+                await SendUpdate();
+
+                Task.Delay(MessageIntervalSeconds * 1000).Wait();
+            }
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            _isRunning = false;
         }
 
         public async Task SendUpdate()
