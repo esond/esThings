@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Azure.Devices.Client;
+using Newtonsoft.Json;
 
 namespace esThings.Devices
 {
     public class GarbageCanMonitor
     {
+        private DeviceClient _deviceClient;
+
         private bool _isRunning;
 
         public GarbageCanMonitor(string hubUri, string id, string deviceKey)
@@ -12,6 +17,8 @@ namespace esThings.Devices
             HubUri = hubUri;
             Id = id;
             DeviceKey = deviceKey;
+
+            _deviceClient = DeviceClient.Create(HubUri, new DeviceAuthenticationWithRegistrySymmetricKey(Id, DeviceKey));
         }
 
         public string HubUri { get; set; }
@@ -30,7 +37,7 @@ namespace esThings.Devices
 
             while (_isRunning)
             {
-                await SendUpdate();
+                await SendStatus();
 
                 Task.Delay(MessageIntervalSeconds * 1000).Wait();
             }
@@ -41,9 +48,18 @@ namespace esThings.Devices
             _isRunning = false;
         }
 
-        public async Task SendUpdate()
+        public async Task SendStatus()
         {
-            throw new NotImplementedException();
+            GarbageCanStatus status = new GarbageCanStatus();
+            status.MessageId = Guid.NewGuid();
+            status.DeviceId = Id;
+            status.DeviceKey = DeviceKey;
+            status.Fullness = Fullness;
+
+            string messageString = JsonConvert.SerializeObject(status);
+            Message message = new Message(Encoding.ASCII.GetBytes(messageString));
+
+            await _deviceClient.SendEventAsync(message);
         }
     }
 }
