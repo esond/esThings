@@ -14,7 +14,7 @@ namespace ProcessDeviceToCloudMessages
 {
     public class StoreEventProcessor : IEventProcessor
     {
-        private const int MaxBlockSize = 4 * 1024 * 1024;
+        private const int MaxBlockSize = 1024;
         public static string StorageConnectionString;
         public static string ServiceBusConnectionString;
 
