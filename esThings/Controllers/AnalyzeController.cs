@@ -28,7 +28,8 @@ namespace esThings.Controllers
             List<GarbageCanStatus> statuses = new List<GarbageCanStatus>();
 
             statuses.Add(new GarbageCanStatus {MessageId = Guid.NewGuid(), DeviceId = "can1", DeviceKey = "theCanNumber1", Fullness = 50});
-            statuses.Add(new GarbageCanStatus {MessageId = Guid.NewGuid(), DeviceId = "can2", DeviceKey = "theCanNumber2", Fullness = 100});
+            statuses.Add(new GarbageCanStatus {MessageId = Guid.NewGuid(), DeviceId = "can1", DeviceKey = "theCanNumber2", Fullness = 0});
+            statuses.Add(new GarbageCanStatus {MessageId = Guid.NewGuid(), DeviceId = "can2", DeviceKey = "theCanNumber3", Fullness = 100});
 
             return View(statuses);
         }

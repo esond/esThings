@@ -26,15 +26,17 @@
             <td>@status.DeviceKey</td>
             <td>@status.Fullness</td>
 
-            @if (status.Fullness == 100) //TODO: Use configured number
+            @if (status.IsFull)
             {
-                <td>
-                    <span class="alert-danger">Full!</span>
-                </td>
+                <td class="alert-danger">Full!</td>
+            }
+            else if (status.IsEmpty)
+            {
+                <td class="alert-success">Empty</td>
             }
             else
             {
-                <td>Ok</td>
+                <td class="alert-info">Ok</td>
             }
         </tr>
     }
