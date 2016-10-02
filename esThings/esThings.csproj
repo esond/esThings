@@ -241,7 +241,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
-    <Content Include="Views\Home\Analyze.cshtml" />
     <Content Include="Views\Analyze\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

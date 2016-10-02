@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D9AA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "esThings", "esThings\esThings.csproj", "{CBB2EA1A-B8FC-4DE5-8304-9EC317B624A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "esThings.Devices", "esThings.Devices\esThings.Devices.csproj", "{8B6AACEE-8083-4800-A4A9-73206D55DF9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{CBB2EA1A-B8FC-4DE5-8304-9EC317B624A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBB2EA1A-B8FC-4DE5-8304-9EC317B624A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBB2EA1A-B8FC-4DE5-8304-9EC317B624A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6AACEE-8083-4800-A4A9-73206D55DF9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6AACEE-8083-4800-A4A9-73206D55DF9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6AACEE-8083-4800-A4A9-73206D55DF9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6AACEE-8083-4800-A4A9-73206D55DF9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
