@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(esThings.Startup))]
+[assembly: OwinStartup(typeof(esThings.Startup))]
 namespace esThings
 {
     public partial class Startup

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -16,10 +15,7 @@ namespace esThings.Controllers
 {
     public class AnalyzeController : Controller
     {
-        private string _iotHubConnectionString = ConfigurationManager.AppSettings["IoTHubConnectionString"];
-        private string _iotHubD2CEndpoint = "messages/events";
         private readonly string _storageConnectionString = ConfigurationManager.AppSettings["StorageConnectionString"];
-        private string _serviceBusConnectionString = ConfigurationManager.AppSettings["ServiceBusListenConnectionString"];
 
         // GET: Analyze
         public async Task<ActionResult> Index()
