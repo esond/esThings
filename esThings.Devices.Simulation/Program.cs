@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace esThings.Devices.Simulation
 {
@@ -10,6 +7,14 @@ namespace esThings.Devices.Simulation
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("Starting simulated GarbageCanMonitors...");
+            GarbageCanMonitorSimulator simulator = new GarbageCanMonitorSimulator();
+
+            int messageIntervalSeconds = int.Parse(ConfigurationManager.AppSettings["MessageIntervalSeconds"]);
+
+            simulator.StartAsync(messageIntervalSeconds, 5);
+
+            Console.ReadLine();
         }
     }
 }

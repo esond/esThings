@@ -2,7 +2,7 @@
 
 namespace esThings.Devices
 {
-    public class GarbageCanStatus
+    public class GarbageCanStatusMessage
     {
         public Guid MessageId { get; set; }
 
@@ -11,5 +11,9 @@ namespace esThings.Devices
         public string DeviceKey { get; set; }
 
         public int Fullness { get; set; }
+
+        public bool IsFull => Fullness >= 100;
+
+        public bool IsEmpty => Fullness == 0;
     }
 }

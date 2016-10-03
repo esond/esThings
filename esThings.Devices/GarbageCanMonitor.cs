@@ -1,63 +1,69 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Azure.Devices;
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
+using Message = Microsoft.Azure.Devices.Client.Message;
 
 namespace esThings.Devices
 {
     public class GarbageCanMonitor
     {
-        private readonly DeviceClient _deviceClient;
+        private DeviceClient _deviceClient;
+        private readonly Device _device;
 
-        private bool _isRunning;
+        //private bool _isRunning;
 
-        public GarbageCanMonitor(string hubUri, string id, string deviceKey)
+        public GarbageCanMonitor(Device device, string hubUri)
         {
+            _device = device;
             HubUri = hubUri;
-            Id = id;
-            DeviceKey = deviceKey;
-
-            _deviceClient = DeviceClient.Create(HubUri, new DeviceAuthenticationWithRegistrySymmetricKey(Id, DeviceKey));
         }
+
+        public string Id => _device.Id;
 
         public string HubUri { get; set; }
 
-        public string Id { get; set; }
-
-        public string DeviceKey { get; set; }
+        public string DeviceKey => _device.Authentication.SymmetricKey.PrimaryKey;
 
         public int Fullness { get; set; }
 
         public int MessageIntervalSeconds { get; set; }
 
-        public async void Start()
-        {
-            _isRunning = true;
+        //public async Task Start()
+        //{
+        //    _isRunning = true;
 
-            while (_isRunning)
-            {
-                await SendStatus();
+        //    while (_isRunning)
+        //    {
+        //        await SendStatus();
 
-                Task.Delay(MessageIntervalSeconds * 1000).Wait();
-            }
-        }
+        //        Task.Delay(MessageIntervalSeconds * 1000).Wait();
+        //    }
+        //}
 
-        public void Stop()
-        {
-            _isRunning = false;
-        }
+        //public void Stop()
+        //{
+        //    _isRunning = false;
+        //}
 
         public async Task SendStatus()
         {
-            GarbageCanStatus status = new GarbageCanStatus();
-            status.MessageId = Guid.NewGuid();
-            status.DeviceId = Id;
-            status.DeviceKey = DeviceKey;
-            status.Fullness = Fullness;
+            if (_deviceClient == null)
+                _deviceClient = DeviceClient.Create(HubUri,
+                    new DeviceAuthenticationWithRegistrySymmetricKey(Id, DeviceKey));
 
-            string messageString = JsonConvert.SerializeObject(status);
+            GarbageCanStatusMessage statusMessage = new GarbageCanStatusMessage();
+            statusMessage.MessageId = Guid.NewGuid();
+            statusMessage.DeviceId = Id;
+            statusMessage.DeviceKey = DeviceKey;
+            statusMessage.Fullness = Fullness;
+
+            string messageString = JsonConvert.SerializeObject(statusMessage);
             Message message = new Message(Encoding.ASCII.GetBytes(messageString));
+
+            Console.WriteLine($"{Id} > Sending message: {messageString}");
 
             await _deviceClient.SendEventAsync(message);
         }
