@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -34,20 +35,19 @@ namespace esThings.Controllers
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(_storageConnectionString);
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference(ConfigurationManager.AppSettings["BlobContainerName"]);
+            CloudBlobContainer blobContainer = blobClient.GetContainerReference(ConfigurationManager.AppSettings["BlobContainerName"]);
 
-            // TODO: Get this dynamically based on partition (see line 98 in StoreEventProcessor) and/or get all partitions
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference("iothubd2c_1"); 
+            IEnumerable<CloudBlockBlob> blockBlobs = blobContainer.ListBlobs()
+                .Where(blobItem => blobItem.GetType() == typeof(CloudBlockBlob))
+                .Cast<CloudBlockBlob>();
 
-            string contents;
-
-            using (MemoryStream ms = new MemoryStream())
+            using (MemoryStream stream = new MemoryStream())
             {
-                await blockBlob.DownloadToStreamAsync(ms);
-                contents = Encoding.UTF8.GetString(ms.ToArray());
-            }
+                foreach (CloudBlockBlob blockBlob in blockBlobs)
+                    await blockBlob.DownloadToStreamAsync(stream);
 
-            return contents;
+                return Encoding.UTF8.GetString(stream.ToArray());
+            }
         }
 
         private IEnumerable<GarbageCanStatusMessage> DeserializeMessages(string data)
