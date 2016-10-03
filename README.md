@@ -1,6 +1,8 @@
 # esThings
 A research/experimentation project to evaluate the capabilities of the MS Asure IoT hub.
 
+Device-to-Cloud segment of this project on YouTube: https://www.youtube.com/watch?v=9g4m44PgLnw
+
 ###esThings - ASP.NET MVC Web Application
 There are two main pages in this application: "analyze" and "configure".
 
