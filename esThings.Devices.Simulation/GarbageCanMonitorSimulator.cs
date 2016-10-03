@@ -56,6 +56,8 @@ namespace esThings.Devices.Simulation
 
         private async Task FillCansAsync(int messageIntervalSeconds)
         {
+            Random random = new Random();
+
             while (true)
             {
                 foreach (GarbageCanMonitor monitor in _monitors)
@@ -63,14 +65,20 @@ namespace esThings.Devices.Simulation
                     if (monitor.Fullness >= 100)
                         monitor.Fullness = 0; // "empty" the can
                     else
-                        monitor.Fullness += 25; // TODO: make this random
+                    {
+                        int fill = random.Next(100);
+
+                        monitor.Fullness += fill;
+
+                        if (monitor.Fullness > 100)
+                            monitor.Fullness = 100;
+                    }
 
                     await monitor.SendStatus();
                 }
 
                 Task.Delay(messageIntervalSeconds * 1000).Wait();
             }
-            
             // ReSharper disable once FunctionNeverReturns
         }
     }
