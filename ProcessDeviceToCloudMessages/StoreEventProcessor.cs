@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace ProcessDeviceToCloudMessages
         {
             var storageAccount = CloudStorageAccount.Parse(StorageConnectionString);
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            _blobContainer = blobClient.GetContainerReference("esthings");
+            _blobContainer = blobClient.GetContainerReference(ConfigurationManager.AppSettings["BlobContainerName"]);
             _blobContainer.CreateIfNotExists();
             _queueClient = QueueClient.CreateFromConnectionString(ServiceBusConnectionString);
         }

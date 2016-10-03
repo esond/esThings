@@ -27,14 +27,6 @@ namespace esThings.Controllers
 
             IEnumerable<GarbageCanStatusMessage> messages = DeserializeMessages(blobString);
 
-            ViewBag.BlobContents = blobString;
-
-            //List<GarbageCanStatusMessage> messages = new List<GarbageCanStatusMessage>();
-
-            //messages.Add(new GarbageCanStatusMessage { MessageId = Guid.NewGuid(), DeviceId = "can1", DeviceKey = "theCanNumber1", Fullness = 50 });
-            //messages.Add(new GarbageCanStatusMessage { MessageId = Guid.NewGuid(), DeviceId = "can1", DeviceKey = "theCanNumber2", Fullness = 0 });
-            //messages.Add(new GarbageCanStatusMessage { MessageId = Guid.NewGuid(), DeviceId = "can2", DeviceKey = "theCanNumber3", Fullness = 100 });
-
             return View(messages);
         }
 
@@ -42,7 +34,7 @@ namespace esThings.Controllers
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(_storageConnectionString);
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference("esthings");
+            CloudBlobContainer container = blobClient.GetContainerReference(ConfigurationManager.AppSettings["BlobContainerName"]);
 
             // TODO: Get this dynamically based on partition (see line 98 in StoreEventProcessor) and/or get all partitions
             CloudBlockBlob blockBlob = container.GetBlockBlobReference("iothubd2c_1"); 
