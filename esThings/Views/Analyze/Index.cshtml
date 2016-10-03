@@ -1,12 +1,21 @@
-﻿@using esThings.Devices
+﻿@using System.Collections
+@using esThings.Devices
 
 @model IEnumerable<GarbageCanStatusMessage>
 
 @{
     ViewBag.Title = "Analyze";
+    IEnumerable<string> deviceIds = ViewBag.DeviceIds;
+
+    SelectList deviceList = new SelectList(deviceIds, ViewBag.SelectedDevice);
 }
 
 <h2>Analyze</h2>
+
+@using (Html.BeginForm("Index", "Analyze", FormMethod.Get))
+{
+    @Html.DropDownList("DeviceId", deviceList, "All devices", new { onchange = "this.form.submit();" })
+}
 
 <table class="table">
     <thead>
@@ -22,7 +31,7 @@
     @foreach (GarbageCanStatusMessage status in Model.OrderByDescending(s => s.MessageSentDateTime))
     {
         <tr>
-            <td>@status.MessageSentDateTime.ToString("G")</td>
+            <td>@status.MessageSentDateTime.ToLocalTime().ToString("G")</td>
             <td>@status.MessageId</td>
             <td>@status.DeviceId</td>
             <td>@status.DeviceKey</td>

@@ -17,12 +17,18 @@ namespace esThings.Controllers
     {
         private readonly string _storageConnectionString = ConfigurationManager.AppSettings["StorageConnectionString"];
 
-        // GET: Analyze
-        public async Task<ActionResult> Index()
+        [HttpGet]
+        public async Task<ActionResult> Index(string deviceId)
         {
             string blobString = await GetBlobsAsString();
 
-            IEnumerable<GarbageCanStatusMessage> messages = DeserializeMessages(blobString);
+            IEnumerable<GarbageCanStatusMessage> messages = DeserializeMessages(blobString).ToList();
+
+            ViewBag.DeviceIds = messages.Select(m => m.DeviceId).Distinct().OrderBy(x => x);
+            ViewBag.SelectedDevice = deviceId;
+
+            if (!string.IsNullOrEmpty(deviceId))
+                return View(messages.Where(m => m.DeviceId == deviceId));
 
             return View(messages);
         }
