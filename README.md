@@ -1,3 +1,5 @@
+Note: I fully realize that there are shared access keys exposed in this repository. All my keys have been regenerated, and you'll have to configure your own Azure resources and replace any relevant connection strings with your own values. The next part of this project will be implementing the Azure key vault to secure the application.
+
 # esThings
 A research/experimentation project to evaluate the capabilities of the MS Asure IoT hub.
 
