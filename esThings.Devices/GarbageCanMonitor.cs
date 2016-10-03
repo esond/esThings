@@ -13,8 +13,6 @@ namespace esThings.Devices
         private DeviceClient _deviceClient;
         private readonly Device _device;
 
-        //private bool _isRunning;
-
         public GarbageCanMonitor(Device device, string hubUri)
         {
             _device = device;
@@ -30,23 +28,6 @@ namespace esThings.Devices
         public int Fullness { get; set; }
 
         public int MessageIntervalSeconds { get; set; }
-
-        //public async Task Start()
-        //{
-        //    _isRunning = true;
-
-        //    while (_isRunning)
-        //    {
-        //        await SendStatus();
-
-        //        Task.Delay(MessageIntervalSeconds * 1000).Wait();
-        //    }
-        //}
-
-        //public void Stop()
-        //{
-        //    _isRunning = false;
-        //}
 
         public async Task SendStatus()
         {

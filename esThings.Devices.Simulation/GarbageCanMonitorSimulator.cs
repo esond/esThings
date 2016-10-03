@@ -21,15 +21,6 @@ namespace esThings.Devices.Simulation
         public async void StartAsync(int numberOfDevices, int messageIntervalSeconds)
         {
             await CreateMonitorsAsync(numberOfDevices);
-
-            //start the monitors and start filling the cans
-            //foreach (GarbageCanMonitor monitor in _monitors)
-            //{
-            //    Console.WriteLine($"Starting monitor {monitor.Id}...");
-
-            //    //await monitor.Start();
-            //}
-
             await FillCansAsync(messageIntervalSeconds);
         }
 
