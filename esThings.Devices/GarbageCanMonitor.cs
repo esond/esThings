@@ -59,7 +59,9 @@ namespace esThings.Devices
             statusMessage.DeviceId = Id;
             statusMessage.DeviceKey = DeviceKey;
             statusMessage.Fullness = Fullness;
+            statusMessage.MessageSentDateTime = DateTime.UtcNow;
 
+            // TODO: Serialize these as proper JSON objects, not just tokens.
             string messageString = JsonConvert.SerializeObject(statusMessage);
             Message message = new Message(Encoding.ASCII.GetBytes(messageString));
 

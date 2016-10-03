@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Azure.Devices;
 
 namespace esThings.Devices
 {
@@ -11,6 +12,8 @@ namespace esThings.Devices
         public string DeviceKey { get; set; }
 
         public int Fullness { get; set; }
+
+        public DateTime MessageSentDateTime { get; set; }
 
         public bool IsFull => Fullness >= 100;
 
