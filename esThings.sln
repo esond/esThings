@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D9AA3AED-CDD8-44C8-A1FC-65EDD4C179A6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{D9AA3AED-CDD8-44C8-A1FC-65EDD4C179A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "esThings", "esThings\esThings.csproj", "{CBB2EA1A-B8FC-4DE5-8304-9EC317B624A1}"
 EndProject
