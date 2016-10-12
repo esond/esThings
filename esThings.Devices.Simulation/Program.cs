@@ -12,7 +12,7 @@ namespace esThings.Devices.Simulation
 
             int messageIntervalSeconds = int.Parse(ConfigurationManager.AppSettings["MessageIntervalSeconds"]);
 
-            simulator.StartAsync(messageIntervalSeconds, 5);
+            simulator.StartAsync(5, messageIntervalSeconds);
 
             Console.ReadLine();
         }
