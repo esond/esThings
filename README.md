@@ -5,7 +5,8 @@ A research/experimentation project to evaluate the capabilities of the MS Asure 
 
 Device-to-Cloud segment of this project on YouTube: https://www.youtube.com/watch?v=9g4m44PgLnw
 
-###esThings - ASP.NET MVC Web Application
+### esThings - ASP.NET MVC Web Application
+
 There are two main pages in this application: "analyze" and "configure".
 
 The "Analyze" page displays a list of all the messages (stored in Block BLOBs) from a configured Azure storage account. These BLOBs are populated using simulated devices (esThings.Devices) , which are controlled by a console application (esThings.Devices.Simulation). These devices send messages to an Azure IoT Hub, and those messages are processed by another console application, ProcessDeviceToCloudMessages.
